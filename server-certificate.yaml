@@ -1,0 +1,34 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: kiam-server-tls
+  namespace: kube-system
+spec:
+  keySize: 2048
+  keyAlgorithm: rsa
+  commonName: Kiam
+  subject:
+    countries:
+    - UK
+    organizationalUnits:
+    - WWW
+    localities:
+    - London
+    provinces:
+    - London
+  organization: 
+  - Uswitch
+  dnsNames:
+    - kiam-server
+    - localhost
+  ipAddresses:
+    - 127.0.0.1
+  duration: 8760h
+  renewBefore: 720h
+  privateKey:
+    rotationPolicy: Always
+  secretName: kiam-server-tls
+  issuerRef:
+    name: kiam
+

@@ -1,0 +1,29 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: kiam-ca-tls
+  namespace: kube-system
+spec:
+  isCA: true
+  keySize: 2048
+  keyAlgorithm: rsa
+  commonName: Kiam CA
+  subject:
+    countries:
+    - UK
+    organizationalUnits:
+    - WWW
+    localities:
+    - London
+    provinces:
+    - London
+  organization: 
+  - Uswitch
+  duration: 8760h
+  renewBefore: 720h
+  privateKey:
+    rotationPolicy: Always
+  secretName: kiam-ca-tls
+  issuerRef:
+    name: kiam-ca
